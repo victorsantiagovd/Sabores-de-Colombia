@@ -52,9 +52,9 @@ Luego abrir http://localhost:3000. Las peticiones se pueden ver en la consola de
 
 ## Despliegue
 
-- **Backend (Render):** _pegar aquí la URL_
-- **Frontend (GitHub Pages):** _pegar aquí la URL_
-- **Repositorio:** _pegar aquí la URL_
+- **Backend (Render):** https://sabores-de-colombia-ulo3.onrender.com
+- **Frontend (GitHub Pages):** https://victorsantiagovd.github.io/Sabores-de-Colombia/
+- **Repositorio:** https://github.com/victorsantiagovd/Sabores-de-Colombia
 
 ## Nota
 
