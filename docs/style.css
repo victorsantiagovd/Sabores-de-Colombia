@@ -1,0 +1,360 @@
+:root {
+  --bg: #fbf5e9;
+  --card: #fffdf8;
+  --ink: #2b1d14;
+  --muted: #6f5d4e;
+  --line: #e4d6bf;
+  --aji: #c1272d;
+  --r1: #0e8f9b;
+  --r2: #2f7d4f;
+  --r3: #b97a12;
+  --r4: #5e8c2a;
+  --r5: #b5532a;
+  --r6: #3a6ea5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1d1511;
+    --card: #2a1e18;
+    --ink: #f4e9d8;
+    --muted: #b9a58e;
+    --line: #4a382c;
+    --aji: #f26a5e;
+    --r1: #35c1cf;
+    --r2: #5fbf86;
+    --r3: #e0a53c;
+    --r4: #93c75a;
+    --r5: #e58a5f;
+    --r6: #6fa3dd;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  line-height: 1.55;
+}
+h1,
+h2,
+h3 {
+  font-family: Georgia, "Palatino Linotype", serif;
+  line-height: 1.15;
+}
+.bandera {
+  height: 8px;
+  background: linear-gradient(
+    to bottom,
+    #fcd116 50%,
+    #003893 50% 75%,
+    #ce1126 75%
+  );
+}
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 44px 20px 12px;
+}
+.sobretitulo {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.8rem;
+  color: var(--aji);
+  font-weight: 700;
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 8vw, 4.2rem);
+  margin: 6px 0 10px;
+  letter-spacing: -0.02em;
+}
+.lead {
+  color: var(--muted);
+  max-width: 54ch;
+  margin: 0;
+  font-size: 1.05rem;
+}
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 8px 20px 48px;
+}
+section {
+  margin-top: 34px;
+}
+h2 {
+  font-size: 1.35rem;
+  margin: 0 0 14px;
+}
+
+.regiones {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.region {
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 6px solid var(--color);
+  border-radius: 10px;
+  padding: 14px 16px;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+.region:hover,
+.region:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+.region.activa {
+  outline: 3px solid var(--color);
+}
+.region h3 {
+  margin: 0 0 2px;
+  font-size: 1.3rem;
+  color: var(--color);
+}
+.region small {
+  color: var(--muted);
+  font-weight: 600;
+}
+.region p {
+  margin: 8px 0 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  font: inherit;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--color, var(--line));
+  background: var(--card);
+  color: var(--ink);
+}
+.chip:hover,
+.chip.activa {
+  background: var(--color, var(--aji));
+  color: #fff;
+}
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--aji);
+  outline-offset: 2px;
+}
+
+#estado {
+  margin: 22px 0 0;
+  color: var(--muted);
+  min-height: 1.4em;
+}
+#estado.error {
+  color: var(--aji);
+  font-weight: 600;
+}
+
+.cabecera-depto {
+  border-left: 8px solid var(--color);
+  padding-left: 16px;
+}
+.cabecera-depto h2 {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  margin: 0 0 6px;
+}
+.cabecera-depto p {
+  color: var(--muted);
+  max-width: 70ch;
+  margin: 0;
+}
+.datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.datos li {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+}
+.datos b {
+  display: block;
+  font-size: 1.05rem;
+}
+
+.platos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+  margin-top: 14px;
+}
+.plato {
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+.plato:hover,
+.plato:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
+}
+.foto {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  background: var(--line);
+}
+.sin-foto {
+  display: grid;
+  place-items: center;
+  font-size: 2.6rem;
+}
+.plato div.info {
+  padding: 12px 14px 14px;
+}
+.plato h3 {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+}
+.plato p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.vacio {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.filtro {
+  font: inherit;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  width: min(100%, 320px);
+  margin-bottom: 12px;
+}
+.municipios .chip {
+  cursor: default;
+  border-color: var(--line);
+  padding: 5px 12px;
+  font-size: 0.9rem;
+}
+.municipios .chip:hover {
+  background: var(--card);
+  color: var(--ink);
+}
+
+dialog {
+  border: 0;
+  border-radius: 14px;
+  padding: 0;
+  width: min(560px, 92vw);
+  max-height: 90vh;
+  background: var(--card);
+  color: var(--ink);
+}
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+}
+#modal-contenido {
+  padding: 0 0 8px;
+}
+#modal-contenido .foto {
+  aspect-ratio: 16 / 9;
+}
+.modal-cuerpo {
+  padding: 16px 22px 8px;
+}
+.modal-cuerpo h3 {
+  font-size: 1.7rem;
+  margin: 0 0 4px;
+}
+.etiqueta {
+  color: var(--aji);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.ingredientes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  list-style: none;
+  margin: 8px 0 14px;
+}
+.ingredientes li {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-size: 0.9rem;
+}
+.nota {
+  font-size: 0.88rem;
+  color: var(--muted);
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.btn-cerrar {
+  display: block;
+  margin: 8px 22px 18px auto;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 9px 20px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--aji);
+  color: #fff;
+}
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 0 20px 36px;
+  font-size: 0.9rem;
+}
+footer a {
+  color: var(--aji);
+}

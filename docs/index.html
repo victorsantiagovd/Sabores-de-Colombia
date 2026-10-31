@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sabores de Colombia</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍲%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bandera" aria-hidden="true"></div>
+
+    <header class="hero">
+      <p class="sobretitulo">Un recorrido por la cocina del país</p>
+      <h1>Sabores de Colombia</h1>
+      <p class="lead">
+        Elige una región, entra a un departamento y descubre sus platos típicos
+        y sus municipios.
+      </p>
+    </header>
+
+    <main>
+      <section aria-labelledby="t-regiones">
+        <h2 id="t-regiones">1. Elige una región</h2>
+        <div id="regiones" class="regiones"></div>
+      </section>
+
+      <section id="sec-deptos" hidden aria-labelledby="t-deptos">
+        <h2 id="t-deptos">2. Elige un departamento</h2>
+        <div id="departamentos" class="chips"></div>
+      </section>
+
+      <p id="estado" role="status" aria-live="polite"></p>
+
+      <section id="detalle" hidden></section>
+    </main>
+
+    <dialog id="modal">
+      <div id="modal-contenido"></div>
+      <button id="cerrar" class="btn-cerrar" type="button">Cerrar</button>
+    </dialog>
+
+    <footer>
+      <p>
+        Datos de
+        <a href="https://api-colombia.com" target="_blank" rel="noopener"
+          >API Colombia</a
+        >.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
