@@ -2,7 +2,7 @@
 // Al publicar el frontend en GitHub Pages, cambia la URL por la de tu backend desplegado.
 const API_URL = ["localhost", "127.0.0.1"].includes(location.hostname)
   ? ""
-  : "https://TU-BACKEND.onrender.com";
+  : "https://sabores-de-colombia-ulo3.onrender.com";
 
 const $ = (id) => document.getElementById(id);
 const fmt = (n) => (n == null ? "—" : Number(n).toLocaleString("es-CO"));
@@ -21,21 +21,42 @@ function el(tag, props = {}, ...hijos) {
   return nodo;
 }
 
-async function pedirJSON(ruta) {
+async function pedirJSON(ruta, intentos = 6) {
   const url = API_URL + ruta;
   console.group("🌐 Petición al backend");
   console.log("GET", url);
   const inicio = performance.now();
   try {
-    const resp = await fetch(url);
-    const data = await resp.json();
-    console.log(
-      `Estado: ${resp.status} (${Math.round(performance.now() - inicio)} ms)`,
-    );
-    console.log("Respuesta:", data);
-    if (Array.isArray(data) && data.length) console.table(data.slice(0, 10)); // vista en tabla
-    if (!resp.ok) throw new Error(data.error || "Error " + resp.status);
-    return data;
+    for (let i = 1; i <= intentos; i++) {
+      try {
+        const resp = await fetch(url);
+        // 502/503/504: el servidor gratuito de Render aún está despertando
+        if ([502, 503, 504].includes(resp.status))
+          throw new TypeError(`servidor no disponible (${resp.status})`);
+        const data = await resp.json();
+        console.log(
+          `Estado: ${resp.status} (${Math.round(performance.now() - inicio)} ms)`,
+        );
+        console.log("Respuesta:", data);
+        if (Array.isArray(data) && data.length)
+          console.table(data.slice(0, 10)); // vista en tabla
+        if (!resp.ok) throw new Error(data.error || "Error " + resp.status);
+        return data;
+      } catch (e) {
+        // Los errores de red (TypeError) se reintentan; los demás se muestran de una vez
+        if (e instanceof TypeError && i < intentos) {
+          console.warn(
+            `Intento ${i} de ${intentos} falló (${e.message}). Reintentando en 8 s...`,
+          );
+          mostrarEstado(
+            "El servidor gratuito está despertando, puede tardar hasta un minuto...",
+          );
+          await new Promise((r) => setTimeout(r, 8000));
+          continue;
+        }
+        throw e;
+      }
+    }
   } finally {
     console.groupEnd();
   }
@@ -80,7 +101,9 @@ async function cargarRegiones() {
             onclick: () => elegirRegion(r),
           },
           el("h3", { text: r.nombre }),
-          el("small", { text: `${r.departamentos} departamentos` }),
+          el("small", {
+            text: `${r.departamentos} ${r.departamentos === 1 ? "departamento" : "departamentos"}`,
+          }),
           el("p", { text: r.descripcion }),
         ),
       ),
